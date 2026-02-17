@@ -1,6 +1,4 @@
 import setuptools
-from pkg_resources import parse_requirements
-import pathlib
 import os
 
 def write_version_py():
@@ -42,7 +40,7 @@ setuptools.setup(
     python_requires='>=3.5',
     download_url='https://github.com/anoopkunchukuttan/indic_nlp_library/archive/master.zip',
     install_requires=[
-        str(requirement) for requirement
-            in parse_requirements(pathlib.Path('requirements.txt').open())
+        line.strip() for line in open('requirements.txt')
+            if line.strip() and not line.startswith('#')
     ]
 )
